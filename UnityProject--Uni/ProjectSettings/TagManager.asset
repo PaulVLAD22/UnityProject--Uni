@@ -14,8 +14,8 @@ TagManager:
   - UI
   - 
   - 
-  - WhatIsGround
-  - WhatIsPlayer
+  - PlayerLayer
+  - GroundLayer
   - 
   - 
   - 
