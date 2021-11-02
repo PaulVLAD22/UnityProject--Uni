@@ -7,33 +7,33 @@ abstract public class AbstractEnemyController : MonoBehaviour
 {
     // NavMeshAgent
     protected UnityEngine.AI.NavMeshAgent agent;
-
-    // Player transform
-    protected Transform player;
-
-    // Layers on what is ground and what is player
-    public LayerMask groundLayer, playerLayer;
-
-    // Health of enemy
-    public float health;
-
-    // Patroling Walk Point
-    public Vector3 walkPoint;
+    
+    protected Vector3 walkPoint;
     protected bool walkPointSet;
-    public float walkPointRange;
 
-    // FOV of enemy
-    public float fov = 94;
-    public float angle;
-
-    // Attacking
-    public float timeBetweenAttacks;
-    public GameObject projectile;
     protected bool alreadyAttacked;
 
-    // States
-    public float sightRange, attackRange;
+    protected Transform player;
+
     protected bool playerInSightRange, playerInAttackRange, playerHasBeenSeen;
+
+    [Header ("Layers")]
+    public LayerMask groundLayer, playerLayer;
+
+    [Header ("General Behaviour")]
+    public float fov = 94f;
+    public float walkPointRange;
+    public float timeBetweenAttacks;
+    public GameObject projectile;
+    public float sightRange, attackRange;
+
+    [Header ("Stats")]
+    public float health;
+    public float damage;
+
+    [Header ("Debug")]
+    public bool shouldNotPatrol;
+    public bool shouldNotFollow;
 
     protected void Awake()
     {
@@ -54,12 +54,14 @@ abstract public class AbstractEnemyController : MonoBehaviour
     protected bool PlayerInFieldOfView()
     {
         bool visibility = false;
+        float angle;
         RaycastHit hit;
         Vector3 rayDirection = player.transform.position - transform.position;
 
         if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity)) {
             if (hit.transform.tag.Equals (player.tag)) {
                 angle = Vector3.Angle (transform.forward, rayDirection);
+                Debug.Log(angle);
                 if (angle <= fov) {
                     visibility = true;
                 }
@@ -80,10 +82,8 @@ abstract public class AbstractEnemyController : MonoBehaviour
             Patroling();
         } else {
             if (playerInAttackRange) {
-                Debug.Log("Attack player");
                 AttackPlayer();
             } else if (playerInSightRange) {
-                Debug.Log("Chase player");
                 ChasePlayer();
             }
         }
@@ -92,6 +92,10 @@ abstract public class AbstractEnemyController : MonoBehaviour
 
     protected void Patroling()
     {
+        if (shouldNotPatrol) {
+            return;
+        }
+
         if (!walkPointSet) {
             SearchWalkPoint();
             agent.SetDestination(walkPoint);
@@ -120,7 +124,13 @@ abstract public class AbstractEnemyController : MonoBehaviour
 
     protected void ChasePlayer()
     {
+        if (shouldNotFollow) {
+            return;
+        }
+
         agent.SetDestination(player.position);
+        walkPointSet = true;
+        walkPoint = player.position;
     }
 
     protected void ResetAttack()
@@ -133,12 +143,28 @@ abstract public class AbstractEnemyController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    protected void DrawPOV()
+    {
+        Gizmos.color = Color.yellow;
+        float rayRange = sightRange;
+        float halfFOV = fov / 2.0f;
+        float coneDirection = 0;
+
+        Quaternion leftRayRotation = Quaternion.AngleAxis(-halfFOV, Vector3.up);
+        Quaternion rightRayRotation = Quaternion.AngleAxis(halfFOV, Vector3.up);
+
+        Vector3 leftRayDirection = leftRayRotation * transform.forward * rayRange;
+        Vector3 rightRayDirection = rightRayRotation * transform.forward * rayRange;
+
+        Gizmos.DrawRay(transform.position, leftRayDirection);
+        Gizmos.DrawRay(transform.position, rightRayDirection);
+    }
+
     protected void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
+        DrawPOV();
     }
 
     public void TakeDamage(int damage)

@@ -110,7 +110,7 @@ NavMeshAgent:
   m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 50
-  m_StoppingDistance: 0
+  m_StoppingDistance: 15
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 0
@@ -155,8 +155,12 @@ MonoBehaviour:
   health: 100
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
-  timeBetweenAttacks: 5
+  fov: 94
+  timeBetweenAttacks: 1
   projectile: {fileID: 7803640559635181419, guid: dbb2e052bc438c847a8daea459c5b573,
     type: 3}
-  sightRange: 75
+  sightRange: 40
   attackRange: 20
+  playerInSightRange: 0
+  playerInAttackRange: 0
+  playerHasBeenSeen: 0
