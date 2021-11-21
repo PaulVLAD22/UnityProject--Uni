@@ -43,3 +43,14 @@ The following packages were added:
   com.unity.textmeshpro@2.1.1
   com.unity.timeline@1.2.18
   com.unity.ugui@1.0.0
+
+=== Sat Oct 30 12:28:43 2021
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.2d.sprite@1.0.0
+  com.unity.2d.tilemap@1.0.0
+  com.unity.postprocessing@2.3.0
+  com.unity.progrids@3.0.3-preview.4
