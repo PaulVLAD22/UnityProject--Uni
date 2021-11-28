@@ -77,20 +77,15 @@ abstract public class AbstractEnemyController : MonoBehaviour
         playerInAttackRange = PlayerInAttackRange();
         playerHasBeenSeen = PlayerInFieldOfView();
 
-        ChasePlayer();
-        // if (!playerHasBeenSeen) {
-        //     Debug.Log("Patrolling...");
-        //     Patroling();
-        // } else {
-        //     Debug.Log(playerInAttackRange);
-        //     if (playerInAttackRange) {
-        //         Debug.Log("Attacking player...");
-        //         AttackPlayer();
-        //     } else if (playerInSightRange) {
-        //         ChasePlayer();
-        //         Debug.Log("Chasing player...");
-        //     }
-        // }
+        if (!playerHasBeenSeen) {
+            Patroling();
+        } else {
+            if (playerInAttackRange) {
+                AttackPlayer();
+            } else if (playerInSightRange) {
+                ChasePlayer();
+            }
+        }
         
     }
 
@@ -100,6 +95,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
+        Debug.Log("Patrolling...");
         if (!walkPointSet) {
             SearchWalkPoint();
             agent.SetDestination(walkPoint);
@@ -132,7 +128,9 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
+        Debug.Log("Chasing player...");
         agent.SetDestination(player.position);
+        transform.LookAt(player);
         walkPointSet = true;
         walkPoint = player.position;
     }
