@@ -58340,6 +58340,50 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!1001 &1982394524
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 77009683780097386, guid: 064b90c565a779546ab83b98a08185b8,
+        type: 3}
+      propertyPath: m_WalkableMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 77009683780097386, guid: 064b90c565a779546ab83b98a08185b8,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212070455602724950, guid: 064b90c565a779546ab83b98a08185b8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448942598541817353, guid: 064b90c565a779546ab83b98a08185b8,
+        type: 3}
+      propertyPath: m_Name
+      value: EnemyShooter (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448942598541817353, guid: 064b90c565a779546ab83b98a08185b8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6795062950520866480, guid: 064b90c565a779546ab83b98a08185b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8133151913974606894, guid: 064b90c565a779546ab83b98a08185b8,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 064b90c565a779546ab83b98a08185b8, type: 3}
 --- !u!1001 &1982646255
 PrefabInstance:
   m_ObjectHideFlags: 0

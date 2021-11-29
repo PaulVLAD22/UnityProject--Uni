@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ShootingAi : MonoBehaviour
 {
-    public int health = 100;
+    public int health;
     
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        this.health -= damage;
         if(health<= 0 ) Destroy(gameObject);
     }
 }
