@@ -13,11 +13,10 @@ public class EnemyShooterController : AbstractEnemyController
         if (!alreadyAttacked)
         {
             // Attack code here
-            // Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            // rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             // End of attack code
 
-            Debug.Log("Attacking player...");
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }

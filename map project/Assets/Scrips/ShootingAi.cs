@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ShootingAi : MonoBehaviour
 {
-    int health = 1000;
+    public int health = 100;
+    
     public void TakeDamage(int damage)
     {
         health -= damage;
