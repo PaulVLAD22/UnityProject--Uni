@@ -15,6 +15,7 @@ public class EnemyShooterController : AbstractEnemyController
             // Attack code here
             Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
             rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingAi>().TakeDamage(damage);
             // End of attack code
 
             alreadyAttacked = true;

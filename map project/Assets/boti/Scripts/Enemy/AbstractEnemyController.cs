@@ -29,7 +29,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
 
     [Header ("Stats")]
     public float health;
-    public float damage;
+    public int damage;
 
     [Header ("Debug")]
     public bool shouldNotPatrol;
