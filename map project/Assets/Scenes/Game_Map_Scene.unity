@@ -9560,7 +9560,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b6c0e01d43a50408d96fdd96e48589, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 200
 --- !u!4 &332447603 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4725356937742777146, guid: c559a22601843db4c927941c06a8b94b,
@@ -61407,6 +61407,16 @@ PrefabInstance:
       propertyPath: fpsCam
       value: 
       objectReference: {fileID: 1546430058}
+    - target: {fileID: 6888096913102868631, guid: 81191c4d52284c5439536e6c44cfed72,
+        type: 3}
+      propertyPath: mouseSensitivity
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334787672938486148, guid: 81191c4d52284c5439536e6c44cfed72,
+        type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     - target: {fileID: 7334787672938486149, guid: 81191c4d52284c5439536e6c44cfed72,
         type: 3}
       propertyPath: m_RootOrder
@@ -61461,6 +61471,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334787672938486169, guid: 81191c4d52284c5439536e6c44cfed72,
+        type: 3}
+      propertyPath: BaseSpeed.BaseValue
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334787672938486169, guid: 81191c4d52284c5439536e6c44cfed72,
+        type: 3}
+      propertyPath: SprintSpeed.BaseValue
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7334787672938486170, guid: 81191c4d52284c5439536e6c44cfed72,
         type: 3}
