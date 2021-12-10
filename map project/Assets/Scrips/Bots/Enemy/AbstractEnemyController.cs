@@ -77,6 +77,11 @@ abstract public class AbstractEnemyController : MonoBehaviour
         playerInAttackRange = PlayerInAttackRange();
         playerHasBeenSeen = PlayerInFieldOfView();
 
+        float dist = Vector3.Distance(transform.position, player.position);
+        Debug.Log("Distance to other: " + dist);
+
+        
+
         if (!playerHasBeenSeen) {
             Patroling();
         } else {
@@ -85,6 +90,11 @@ abstract public class AbstractEnemyController : MonoBehaviour
             } else if (playerInSightRange) {
                 ChasePlayer();
             }
+        }
+
+        if (!playerHasBeenSeen && dist<4){
+            transform.LookAt(player);
+            ChasePlayer();
         }
         
     }
