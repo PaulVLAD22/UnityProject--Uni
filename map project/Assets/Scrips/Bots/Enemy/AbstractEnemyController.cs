@@ -181,12 +181,8 @@ abstract public class AbstractEnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
-
-        if (health <= 0) 
-        {
-            Invoke(nameof(DestroyEnemy), 0.5f);
-        }
+        this.health -= damage;
+        if(health<= 0 ) Destroy(gameObject);
     }
 
     protected abstract void AttackPlayer();

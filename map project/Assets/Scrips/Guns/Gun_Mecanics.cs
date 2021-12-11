@@ -125,7 +125,7 @@ public class Gun_Mecanics : MonoBehaviour
         {
             if (rayHit.collider.CompareTag("Enemy"))
             {
-                rayHit.collider.GetComponent<ShootingAi>().TakeDamage(damage);
+                rayHit.collider.GetComponent<AbstractEnemyController>().TakeDamage(damage);
             }
         }
         GameObject bulletHole = Instantiate(bulletHoleGraphic, rayHit.point + rayHit.normal * 0.00001f, Quaternion.identity);
