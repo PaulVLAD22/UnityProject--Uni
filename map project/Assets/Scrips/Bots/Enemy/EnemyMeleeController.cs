@@ -2,17 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMeleeController : MonoBehaviour
+public class EnemyMeleeController : AbstractEnemyController
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void AttackPlayer()
     {
-        
-    }
+        // Make sure enemy doesn't move
+        agent.SetDestination(transform.position);
+        Debug.Log("Attacking player");
+        transform.LookAt(player);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (!alreadyAttacked)
+        {
+            // Attack code here
+            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingAi>().TakeDamage(damage);
+            // End of attack code
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
     }
 }

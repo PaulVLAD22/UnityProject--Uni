@@ -42103,13 +42103,13 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  fov: 115
+  fov: 95
   walkPointRange: 10
   timeBetweenAttacks: 1
   projectile: {fileID: 7803640559635181419, guid: dbb2e052bc438c847a8daea459c5b573,
     type: 3}
   sightRange: 30
-  attackRange: 5
+  attackRange: 1
   health: 20
   damage: 10
   shouldNotPatrol: 0
@@ -42165,6 +42165,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07, y: 0.15, z: 0.07}
   m_Center: {x: 0, y: 0.08, z: 0}
+--- !u!114 &1420410692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420410687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc7208f8cc38cff4e89069211d4165f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  fov: 115
+  walkPointRange: 10
+  timeBetweenAttacks: 5
+  projectile: {fileID: 0}
+  sightRange: 30
+  attackRange: 5
+  health: 20
+  damage: 10
+  shouldNotPatrol: 0
+  shouldNotFollow: 0
 --- !u!4 &1424331090 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2317576605586290934, guid: 5adaedd4c0081614da171fecdf6bbd37,
