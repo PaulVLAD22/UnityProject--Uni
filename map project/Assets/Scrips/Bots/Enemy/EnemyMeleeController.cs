@@ -15,10 +15,12 @@ public class EnemyMeleeController : AbstractEnemyController
         if (!alreadyAttacked)
         {
             // Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            // Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            // rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
             //GameObject.FindGameObjectWithTag("Player").GetComponent<ShootingAi>().TakeDamage(damage);
             // End of attack code
+
+            //add damage code
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
