@@ -5,8 +5,17 @@ using UnityEngine.AI;
 
 abstract public class AbstractEnemyController : MonoBehaviour
 {
+    protected bool isDead = false;
+
+    protected const int IDLE = 0;
+    protected const int PATROLLING = 1;
+    protected const int CHASING = 2;
+    protected const int ATTACKING = 3;
+    protected const int DYING = 4;
+
     // NavMeshAgent
     protected UnityEngine.AI.NavMeshAgent agent;
+    protected Animator animator;
     
     protected Vector3 walkPoint;
     protected bool walkPointSet;
@@ -24,7 +33,6 @@ abstract public class AbstractEnemyController : MonoBehaviour
     public float fov = 94f;
     public float walkPointRange;
     public float timeBetweenAttacks;
-    public GameObject projectile;
     public float sightRange, attackRange;
 
     [Header ("Stats")]
@@ -38,7 +46,13 @@ abstract public class AbstractEnemyController : MonoBehaviour
     protected void Awake()
     {
         player = GameObject.Find("Player").transform;
+
+        if (player == null) {
+            Debug.Log("There is no player for the enemy to track!");
+        }
+
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     protected bool PlayerInAttackRange() 
@@ -72,35 +86,29 @@ abstract public class AbstractEnemyController : MonoBehaviour
 
     protected void FixedUpdate()
     {
+        if (alreadyAttacked || isDead) {
+            return;
+        }
+
         // Check for sight and attack range
         playerInSightRange = PlayerInSightRange();
         playerInAttackRange = PlayerInAttackRange();
         playerHasBeenSeen = PlayerInFieldOfView();
 
-        float dist = Vector3.Distance(transform.position, player.position);
-        Debug.Log("Distance to other: " + dist);
-
-        
-
-        if (!playerHasBeenSeen) {
-            Patroling();
+        if (playerInAttackRange) {
+            AttackPlayer();
         } else {
-            if (playerInAttackRange) {
-                AttackPlayer();
-            } else if (playerInSightRange) {
+            if (playerHasBeenSeen && playerInSightRange) {
                 ChasePlayer();
+            } else {
+                Patrolling();
             }
         }
-
-        if (!playerHasBeenSeen && dist<4){
-            transform.LookAt(player);
-            ChasePlayer();
-        }
-        
     }
 
-    protected void Patroling()
+    protected void Patrolling()
     {
+        SetAnimationState(PATROLLING);
         if (shouldNotPatrol) {
             return;
         }
@@ -116,6 +124,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
 
         // Walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f) {
+            Debug.Log("Walkpoint reached");
             walkPointSet = false;
         }
     }
@@ -134,6 +143,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
 
     protected void ChasePlayer()
     {
+        SetAnimationState(CHASING);
         if (shouldNotFollow) {
             return;
         }
@@ -145,14 +155,26 @@ abstract public class AbstractEnemyController : MonoBehaviour
         walkPoint = player.position;
     }
 
+    protected void StopMotion() {
+        agent.SetDestination(transform.position);
+    }
+
     protected void ResetAttack()
     {
+        SetAnimationState(IDLE);
         alreadyAttacked = false;
+    }
+
+    protected void SetAnimationState(int state) {
+        animator.SetInteger("State", state);
     }
 
     protected void DestroyEnemy()
     {
-        Destroy(gameObject);
+        isDead = true;
+        SetAnimationState(DYING);
+        Debug.Log("Destroying enemy...");
+        Destroy(gameObject, 2.5f);
     }
 
     protected void DrawPOV()
@@ -160,7 +182,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
         Gizmos.color = Color.yellow;
         float rayRange = sightRange;
         float halfFOV = fov / 2.0f;
-        float coneDirection = 0;
+        // float coneDirection = 0;
 
         Quaternion leftRayRotation = Quaternion.AngleAxis(-halfFOV, Vector3.up);
         Quaternion rightRayRotation = Quaternion.AngleAxis(halfFOV, Vector3.up);
@@ -182,8 +204,27 @@ abstract public class AbstractEnemyController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         this.health -= damage;
-        if(health<= 0 ) Destroy(gameObject);
+
+        if (health <= 0) {
+            DestroyEnemy();
+        }
     }
 
-    protected abstract void AttackPlayer();
+    protected void AttackPlayer() 
+    {
+        transform.LookAt(player);
+        StopMotion();
+
+        if (!alreadyAttacked)
+        {
+            Debug.Log("Attacking player...");
+            SetAnimationState(ATTACKING);
+            AttackAction();
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+
+    // Attack code here
+    protected abstract void AttackAction();
 }

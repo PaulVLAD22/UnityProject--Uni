@@ -939,7 +939,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2635949783396802045}
   - component: {fileID: 2635949783406391837}
-  - component: {fileID: 2635949783396927353}
   - component: {fileID: 2635949783396927352}
   - component: {fileID: 2635949783396927355}
   - component: {fileID: 2635949783396927354}
@@ -976,7 +975,7 @@ Animator:
   m_GameObject: {fileID: 2635949783397024221}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: cc633396b5f95da4b916357a5508ee4f, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 30090825a155fd34a970e1d318039535, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -985,22 +984,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &2635949783396927353
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2635949783397024221}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &2635949783396927352
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1030,8 +1013,8 @@ NavMeshAgent:
   m_AngularSpeed: 50
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
-  m_AutoRepath: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 1
   m_Height: 0.4
   m_BaseOffset: 0
   m_WalkableMask: 1
@@ -1045,26 +1028,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 2635949783397024221}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c732ab9c25d0348bd7053323efac9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 17119acb93c05444e9aa65f8ff750f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1024
   playerLayer:
     serializedVersion: 2
     m_Bits: 512
-  fov: 95
-  walkPointRange: 10
-  timeBetweenAttacks: 1
-  projectile: {fileID: 7803640559635181419, guid: dbb2e052bc438c847a8daea459c5b573,
-    type: 3}
-  sightRange: 30
+  fov: 94
+  walkPointRange: 100
+  timeBetweenAttacks: 5
+  sightRange: 10
   attackRange: 5
-  health: 20
-  damage: 10
+  health: 50
+  damage: 5
   shouldNotPatrol: 0
   shouldNotFollow: 0
+  projectile: {fileID: 0}
 --- !u!1 &2635949783397024223
 GameObject:
   m_ObjectHideFlags: 0
