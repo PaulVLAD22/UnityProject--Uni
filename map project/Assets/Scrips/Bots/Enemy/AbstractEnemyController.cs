@@ -54,7 +54,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
     protected void Awake()
     {
         player = GameObject.Find("Player").transform;
-        navMeshAgent = gameObject.GetComponentInChildren<NavMeshAgent>();
+        //navMeshAgent = gameObject.GetComponentInChildren<NavMeshAgent>();
         patrollingPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
 
         if (player == null) {
@@ -100,6 +100,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
+        //stop slipping
         //  if (navMeshAgent.hasPath)
         //  navMeshAgent.acceleration = (navMeshAgent.remainingDistance < closeEnoughMeters) ? deceleration : acceleration;
 
