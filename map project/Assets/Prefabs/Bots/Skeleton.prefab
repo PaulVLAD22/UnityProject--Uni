@@ -1342,7 +1342,7 @@ MonoBehaviour:
   health: 60
   damage: 30
   shouldNotPatrol: 0
-  shouldNotFollow: 0
+  shouldNotFollow: 1
 --- !u!1 &6798164457771744489
 GameObject:
   m_ObjectHideFlags: 0

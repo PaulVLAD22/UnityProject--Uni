@@ -16,12 +16,19 @@ abstract public class AbstractEnemyController : MonoBehaviour
     // NavMeshAgent
     protected UnityEngine.AI.NavMeshAgent agent;
     protected Animator animator;
+
+    GameObject[] patrollingPoints;
+
+    protected NavMeshAgent navMeshAgent;
+    public float acceleration = 2f;
+   public float deceleration = 60f;
+   public float closeEnoughMeters = 4f;
     
+    protected int patrolPointIndex = 0;
     protected Vector3 walkPoint;
     protected bool walkPointSet;
 
     protected bool alreadyAttacked;
-    protected bool goingtoPatrolPoint=false;
 
     protected Transform player;
 
@@ -47,6 +54,8 @@ abstract public class AbstractEnemyController : MonoBehaviour
     protected void Awake()
     {
         player = GameObject.Find("Player").transform;
+        navMeshAgent = gameObject.GetComponentInChildren<NavMeshAgent>();
+        patrollingPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
 
         if (player == null) {
             Debug.Log("There is no player for the enemy to track!");
@@ -91,6 +100,9 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
+        //  if (navMeshAgent.hasPath)
+        //  navMeshAgent.acceleration = (navMeshAgent.remainingDistance < closeEnoughMeters) ? deceleration : acceleration;
+
         // Check for sight and attack range
         playerInSightRange = PlayerInSightRange();
         playerInAttackRange = PlayerInAttackRange();
@@ -131,7 +143,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
                         Debug.Log("Walkpoint reached");
-            walkPointSet = false;
+                        walkPointSet = false;
                     }
                 }
             }
@@ -143,18 +155,18 @@ abstract public class AbstractEnemyController : MonoBehaviour
     {
        
         
-       
-            
-            GameObject[] patrollingPoints;
-            patrollingPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
             int nbOfPoints = patrollingPoints.Length;
+            
+            int nextPatrollingPoint = patrolPointIndex+1;
+            if (nextPatrollingPoint>patrollingPoints.Length-1){
+                nextPatrollingPoint=0;
+            }
+            Debug.Log("Salut "+nextPatrollingPoint);
+            
 
-            int random_number = Random.Range(0,nbOfPoints);
-            Debug.Log(random_number);
-
-
-
-            walkPoint = new Vector3(patrollingPoints[random_number].transform.position.x,patrollingPoints[random_number].transform.position.y,patrollingPoints[random_number].transform.position.z);
+            
+            patrolPointIndex = nextPatrollingPoint;
+            walkPoint = new Vector3(patrollingPoints[nextPatrollingPoint].transform.position.x,patrollingPoints[nextPatrollingPoint].transform.position.y,patrollingPoints[nextPatrollingPoint].transform.position.z);
             walkPointSet=true;
             
         
