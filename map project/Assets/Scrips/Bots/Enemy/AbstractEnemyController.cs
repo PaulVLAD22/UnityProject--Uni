@@ -21,6 +21,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
     protected bool walkPointSet;
 
     protected bool alreadyAttacked;
+    protected bool goingtoPatrolPoint=false;
 
     protected Transform player;
 
@@ -123,22 +124,53 @@ abstract public class AbstractEnemyController : MonoBehaviour
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         // Walkpoint reached
-        if (distanceToWalkPoint.magnitude < 1f) {
-            Debug.Log("Walkpoint reached");
+        if (!agent.pathPending)
+            {
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                    {
+                        Debug.Log("Walkpoint reached");
             walkPointSet = false;
-        }
+                    }
+                }
+            }
+            
+        
     }
 
     protected void SearchWalkPoint()
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+       
+        
+       
+            
+            GameObject[] patrollingPoints;
+            patrollingPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
+            int nbOfPoints = patrollingPoints.Length;
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+            int random_number = Random.Range(0,nbOfPoints);
+            Debug.Log(random_number);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer)) {
-            walkPointSet = true;
-        }
+
+
+            walkPoint = new Vector3(patrollingPoints[random_number].transform.position.x,patrollingPoints[random_number].transform.position.y,patrollingPoints[random_number].transform.position.z);
+            walkPointSet=true;
+            
+        
+        
+
+        // pt a merge la loc
+        //agent.SetDestination(player.position);
+
+        // float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        // float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        // walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        // if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer)) {
+        //     walkPointSet = true;
+        // }
     }
 
     protected void ChasePlayer()
