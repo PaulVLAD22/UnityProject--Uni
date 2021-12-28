@@ -2,17 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMeleeController : MonoBehaviour
+public class EnemyMeleeController : AbstractEnemyController
 {
-    // Start is called before the first frame update
-    void Start()
+    protected override void AttackAction()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

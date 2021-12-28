@@ -14,8 +14,7 @@ GameObject:
   - component: {fileID: 6795062950520866480}
   - component: {fileID: 77009683780097386}
   - component: {fileID: 2483470393384674874}
-  - component: {fileID: 7149108084358418148}
-  - component: {fileID: 8121201880902626354}
+  - component: {fileID: 6635102432804799708}
   m_Layer: 0
   m_Name: EnemyShooter
   m_TagString: Enemy
@@ -63,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5c836b312af347b4d80b99bdbe9f8b24, type: 2}
+  - {fileID: 2100000, guid: 6890478bce4a9a9408cfab92689b3afb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,7 +134,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7149108084358418148
+--- !u!114 &6635102432804799708
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,15 +143,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5448942598541817353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1c732ab9c25d0348bd7053323efac9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 17119acb93c05444e9aa65f8ff750f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   groundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   playerLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 0
   fov: 115
   walkPointRange: 10
   timeBetweenAttacks: 1
@@ -160,20 +159,7 @@ MonoBehaviour:
     type: 3}
   sightRange: 30
   attackRange: 5
-  health: 100
-  damage: 0
+  health: 60
+  damage: 20
   shouldNotPatrol: 0
   shouldNotFollow: 0
---- !u!114 &8121201880902626354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448942598541817353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48b6c0e01d43a50408d96fdd96e48589, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 40
