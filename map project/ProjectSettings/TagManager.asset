@@ -9,6 +9,7 @@ TagManager:
   - ExplosiveBarrel
   - Enemy
   - PatrolPoint
+  - PowerupPoint
   layers:
   - Default
   - TransparentFX

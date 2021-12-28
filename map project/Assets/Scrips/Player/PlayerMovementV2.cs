@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementV2 : MonoBehaviour
 {
     public Player player;
     public CharacterController controller;
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(moveDir * speed * Time.deltaTime);
 
-       
+
     }
 
     private void HandleJump()
