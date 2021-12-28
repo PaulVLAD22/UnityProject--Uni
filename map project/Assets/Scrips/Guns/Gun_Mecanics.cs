@@ -9,7 +9,7 @@ public class Gun_Mecanics : MonoBehaviour
     [SerializeField] int damage, magazinSize, pelletsNumber;
     [SerializeField] float rateOfFire, spread, range, reloadTime;
     [SerializeField] bool allowButtonHold, isShotgun;
-    int bulletsLeft, bulletsShot;
+    int bulletsLeft, bulletsInInvetory;
     bool shooting, readyToShoot, reloading;
 
 
@@ -39,13 +39,15 @@ public class Gun_Mecanics : MonoBehaviour
     GameObject Canvas;
     public AudioSource GunSound;
 
+    public PlayerInventory playerInventory;
     private void Start()
     {
-        //Canvas = GameObject.Find("Canvas");
-       // text = Canvas.transform.GetChild(0).gameObject;
+        Canvas = GameObject.Find("Canvas");
+        text = Canvas.transform.GetChild(0).gameObject;
 
         //fpsCam = Camera.mai;
-        bulletsLeft = magazinSize;
+        checkedBulletsType();
+        Reload();
         readyToShoot = true;
         Recoil_Script = GetComponentInParent<Gun_Recoil>();
         originalPosition = transform.localPosition;
@@ -55,7 +57,7 @@ public class Gun_Mecanics : MonoBehaviour
     private void Update()
     {
         MyInput();
-        //text.GetComponent<TextMeshProUGUI>().SetText(bulletsLeft + " / " + magazinSize);
+        text.GetComponent<TextMeshProUGUI>().SetText(bulletsLeft + " / " + bulletsInInvetory);
         ADS();
         if (reloading == true)
         {
@@ -140,14 +142,59 @@ public class Gun_Mecanics : MonoBehaviour
     private void Reload()
     {
         reloading = true;
-        
         Invoke("ReloadFinished", reloadTime);
 
     }
 
+    private void decreseNumberOfBullets() {
+        if(isShotgun == true){
+            playerInventory.shotgunBullets = playerInventory.shotgunBullets - magazinSize + bulletsLeft;
+            if(playerInventory.shotgunBullets < 0){
+                playerInventory.shotgunBullets = 0;
+            }
+        }
+        else{
+            if(allowButtonHold == true){
+                playerInventory.heavyBullets = playerInventory.heavyBullets - magazinSize + bulletsLeft;
+                if(playerInventory.heavyBullets < 0){
+                playerInventory.heavyBullets = 0;
+            }
+            }
+            else{
+                playerInventory.lightBullets = playerInventory.lightBullets - magazinSize + bulletsLeft;
+                if(playerInventory.lightBullets < 0){
+                playerInventory.lightBullets = 0;
+            }
+            }
+        } 
+    }
+    private void checkedBulletsType()
+    {
+        if(isShotgun == true){
+            bulletsInInvetory = playerInventory.shotgunBullets;
+        }
+        else{
+            if(allowButtonHold == true){
+                bulletsInInvetory = playerInventory.heavyBullets;
+            }
+            else{
+                bulletsInInvetory = playerInventory.lightBullets;
+            }
+        } 
+    }
+
     private void ReloadFinished()
     {
-        bulletsLeft = magazinSize;
+        if(bulletsInInvetory >= magazinSize) {
+            decreseNumberOfBullets();
+            bulletsLeft = magazinSize;
+            bulletsInInvetory -= magazinSize;
+            
+        }else{
+            decreseNumberOfBullets();
+            bulletsLeft = bulletsInInvetory;
+            bulletsInInvetory = 0;
+        }
         reloading = false;
     }
 
