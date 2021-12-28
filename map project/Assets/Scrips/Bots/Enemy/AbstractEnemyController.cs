@@ -58,7 +58,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
         patrollingPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
 
         if (player == null) {
-            Debug.Log("There is no player for the enemy to track!");
+            //Debug.Log("There is no player for the enemy to track!");
         }
 
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -127,7 +127,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
-        Debug.Log("Patrolling...");
+        //Debug.Log("Patrolling...");
         if (!walkPointSet) {
             SearchWalkPoint();
             agent.SetDestination(walkPoint);
@@ -144,7 +144,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
                     if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                     {
                         Debug.Log("Walkpoint reached");
-                        walkPointSet = false;
+                    walkPointSet = false;
                     }
                 }
             }
@@ -162,7 +162,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
             if (nextPatrollingPoint>patrollingPoints.Length-1){
                 nextPatrollingPoint=0;
             }
-            Debug.Log("Salut "+nextPatrollingPoint);
+            //Debug.Log("Salut "+nextPatrollingPoint);
             
 
             
@@ -193,7 +193,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
-        Debug.Log("Chasing player...");
+        //Debug.Log("Chasing player...");
         agent.SetDestination(player.position);
         transform.LookAt(player);
         walkPointSet = true;

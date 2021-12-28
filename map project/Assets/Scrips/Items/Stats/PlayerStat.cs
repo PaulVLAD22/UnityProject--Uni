@@ -54,11 +54,17 @@ public class PlayerStat
 
        foreach(var statMod in statModifiers)
         {
-            if (statMod.Type == StatModType.Flat)
-                finalValue += statMod.Value;
-            else
-                finalValue *= 1 + statMod.Value;
-
+            switch (statMod.Type)
+            {
+                case StatModType.Flat:
+                    finalValue += statMod.Value;
+                    break;
+                case StatModType.Percent:
+                    finalValue *= 1 + statMod.Value / 100;
+                    break;
+                default:
+                    break;
+            };
         }
 
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
     // ground check
     public Transform groundCheck;
     public float groundDistance = 0.4f;
-    public LayerMask groundMask;
+    public List<LayerMask> groundMasks;
 
     bool isGrounded;
 
@@ -27,25 +28,19 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         speed = player.BaseSpeed.Value;
-        gravity = -9.81f * 2;
+        gravity = -9.81f * 4;
     }
 
     // Update is called once per frame
     void Update()
     {
         HandleCharacterMovement();
-        HandleHookStart();
+        HandleJump();
+        //HandleHookStart();
     }
 
     private void HandleCharacterMovement()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -60,7 +55,23 @@ public class PlayerMovement : MonoBehaviour
             speed = player.BaseSpeed.Value;
         }
 
+        //Debug.Log($"Player speed is {speed}");
+
         controller.Move(moveDir * speed * Time.deltaTime);
+
+       
+    }
+
+    private void HandleJump()
+    {
+        isGrounded = groundMasks.Any(groundMask => Physics.CheckSphere(groundCheck.position, groundDistance, groundMask));
+
+        //Debug.Log($"isGrounded - {isGrounded}");
+
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {

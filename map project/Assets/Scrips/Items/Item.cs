@@ -21,11 +21,13 @@ public class Item : MonoBehaviour
 
     public void Pickup(Collider player)
     {
-        Instantiate(pickupEffect, transform.position, transform.rotation);
-
         Equip(player.GetComponent<Player>());
 
         Destroy(gameObject);
+
+        var effect = Instantiate(pickupEffect, transform.position, transform.rotation) as GameObject;
+        ParticleSystem parts = effect.GetComponent<ParticleSystem>();
+        Destroy(effect, 2);
     }
 
     public void Equip(Player p)
