@@ -1031,6 +1031,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17119acb93c05444e9aa65f8ff750f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  acceleration: 2
+  deceleration: 60
+  closeEnoughMeters: 4
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -1046,7 +1049,8 @@ MonoBehaviour:
   damage: 5
   shouldNotPatrol: 0
   shouldNotFollow: 0
-  projectile: {fileID: 0}
+  projectile: {fileID: 7803640559635181419, guid: dbb2e052bc438c847a8daea459c5b573,
+    type: 3}
 --- !u!1 &2635949783397024223
 GameObject:
   m_ObjectHideFlags: 0
