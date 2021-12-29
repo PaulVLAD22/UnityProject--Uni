@@ -64203,6 +64203,12 @@ PrefabInstance:
       propertyPath: health
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2635949783396927354, guid: 631eeb2e6a017f64fb202edce48d9374,
+        type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 7803640559635181419, guid: dbb2e052bc438c847a8daea459c5b573,
+        type: 3}
     - target: {fileID: 2635949783397024221, guid: 631eeb2e6a017f64fb202edce48d9374,
         type: 3}
       propertyPath: m_Name
