@@ -43,7 +43,8 @@ public class Item : MonoBehaviour
                 p.JumpHeight.AddModifier(mod);
                 break;
             case PlayerStatsEnum.Health:
-                p.Health.AddModifier(mod);
+                p.Health.AddValue(mod);
+                p.CheckHealth();
                 break;
             case PlayerStatsEnum.MaxHealth:
                 p.MaxHealth.AddModifier(mod);
@@ -67,5 +68,6 @@ public enum PlayerStatsEnum
         SprintSpeed,
         JumpHeight,
         Health,
-        MaxHealth
+        MaxHealth,
+        DamageReduction
 }

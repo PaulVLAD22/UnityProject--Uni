@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 
 [Serializable]
-public class PlayerStat 
+public class PlayerStat
 {
 
     public float BaseValue;
+
+    public float MaxValue;
 
     public float Value
     {
@@ -19,14 +21,35 @@ public class PlayerStat
             return _value;
         }
     }
+
+    public float CustomValue { get; set; }
+
     private bool isCalculated = false;
     private float _value;
 
     private readonly List<StatModifier> statModifiers;
 
-
-    public PlayerStat(float baseValue)
+    //
+    public void AddValue(StatModifier statMod)
     {
+        switch (statMod.Type)
+        {
+            case StatModType.Flat:
+                CustomValue += statMod.Value;
+                break;
+            case StatModType.Percent:
+                CustomValue *= 1 + statMod.Value / 100;
+                break;
+            default:
+                break;
+        };
+    }
+    //
+
+
+    public PlayerStat(float baseValue, float maxValue)
+    {
+        CustomValue = baseValue;
         BaseValue = baseValue;
         statModifiers = new List<StatModifier>();
     }
@@ -67,7 +90,6 @@ public class PlayerStat
             };
         }
 
-
-        return (float)Math.Round(finalValue, 4);
+        return (finalValue >= MaxValue) ? MaxValue : ((float)Math.Round(finalValue, 4));
     }
 }

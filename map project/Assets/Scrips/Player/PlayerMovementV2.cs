@@ -41,6 +41,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
     private void HandleCharacterMovement()
     {
+        //Debug.Log("Moving...");
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 

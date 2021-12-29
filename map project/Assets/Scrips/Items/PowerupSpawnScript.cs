@@ -51,9 +51,10 @@ public class PowerupSpawnScript : MonoBehaviour
 
     private void HandlePowerupSpawn()
     {
+        CheckAvailableSpawns();
         foreach (Powerup powerup in Powerups)
         {
-            if(powerup.spawnRate <= Random.Range(0, 100))
+            if(Random.Range(0, 100) <= powerup.spawnRate)
             {
                 var available = SpawnPoints.Where(x => !x.isOccupied).ToList();
                 if (available.Any())
@@ -68,6 +69,18 @@ public class PowerupSpawnScript : MonoBehaviour
 
     private void SpawnPowerup(Powerup powerup, SpawnPoint spawn)
     {
+        spawn.isOccupied = true;
         var @object = Instantiate(powerup.gameObject, spawn.gameObject.transform);
+    }
+
+    private void CheckAvailableSpawns()
+    {
+        foreach (var spawn in SpawnPoints)
+        {
+            if(spawn.gameObject.transform.childCount == 0)
+            {
+                spawn.isOccupied = false;
+            }
+        }
     }
 }

@@ -60,7 +60,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82dd3a8eb08eabc42a11fc14918c4871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupEffect: {fileID: 100000, guid: bc0290eb454386141a1f4a4cf6a5c25b, type: 3}
+  pickupEffect: {fileID: 1000010715882420, guid: 14d81e2c407975245973a11cdfbeb902,
+    type: 3}
   mod:
     Value: 100
     Type: 0
