@@ -16,15 +16,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
     // NavMeshAgent
     protected UnityEngine.AI.NavMeshAgent agent;
     protected Animator animator;
-
-    GameObject[] patrollingPoints;
-
-    protected NavMeshAgent navMeshAgent;
-    public float acceleration = 2f;
-   public float deceleration = 60f;
-   public float closeEnoughMeters = 4f;
     
-    protected int patrolPointIndex = 0;
     protected Vector3 walkPoint;
     protected bool walkPointSet;
 
@@ -54,11 +46,9 @@ abstract public class AbstractEnemyController : MonoBehaviour
     protected void Awake()
     {
         player = GameObject.Find("Player").transform;
-        //navMeshAgent = gameObject.GetComponentInChildren<NavMeshAgent>();
-        patrollingPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
 
         if (player == null) {
-            //Debug.Log("There is no player for the enemy to track!");
+            Debug.Log("There is no player for the enemy to track!");
         }
 
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -100,10 +90,6 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
-        //stop slipping
-        //  if (navMeshAgent.hasPath)
-        //  navMeshAgent.acceleration = (navMeshAgent.remainingDistance < closeEnoughMeters) ? deceleration : acceleration;
-
         // Check for sight and attack range
         playerInSightRange = PlayerInSightRange();
         playerInAttackRange = PlayerInAttackRange();
@@ -127,63 +113,37 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
-        //Debug.Log("Patrolling...");
         if (!walkPointSet) {
             SearchWalkPoint();
             agent.SetDestination(walkPoint);
             transform.LookAt(walkPoint);
         }
-            
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         // Walkpoint reached
         if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                if (agent.remainingDistance <= agent.stoppingDistance)
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
                 {
-                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                    {
-                        Debug.Log("Walkpoint reached");
+                    Debug.Log("Walkpoint reached");
                     walkPointSet = false;
-                    }
                 }
             }
-            
-        
+        }
     }
 
     protected void SearchWalkPoint()
     {
-       
-        
-            int nbOfPoints = patrollingPoints.Length;
-            
-            int nextPatrollingPoint = patrolPointIndex+1;
-            if (nextPatrollingPoint>patrollingPoints.Length-1){
-                nextPatrollingPoint=0;
-            }
-            //Debug.Log("Salut "+nextPatrollingPoint);
-            
+        GameObject[] patrollingPoints = GameObject.FindGameObjectsWithTag("PatrolPoint");
+        int numberOfPoints = patrollingPoints.Length;
+        int selectedPoint = Random.Range(0, numberOfPoints);
 
-            
-            patrolPointIndex = nextPatrollingPoint;
-            walkPoint = new Vector3(patrollingPoints[nextPatrollingPoint].transform.position.x,patrollingPoints[nextPatrollingPoint].transform.position.y,patrollingPoints[nextPatrollingPoint].transform.position.z);
-            walkPointSet=true;
-            
-        
-        
-
-        // pt a merge la loc
-        //agent.SetDestination(player.position);
-
-        // float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        // float randomX = Random.Range(-walkPointRange, walkPointRange);
-
-        // walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        // if (Physics.Raycast(walkPoint, -transform.up, 2f, groundLayer)) {
-        //     walkPointSet = true;
-        // }
+        walkPoint = new Vector3(
+            patrollingPoints[selectedPoint].transform.position.x,
+            patrollingPoints[selectedPoint].transform.position.y,
+            patrollingPoints[selectedPoint].transform.position.z);
+        walkPointSet=true;
     }
 
     protected void ChasePlayer()
@@ -193,7 +153,6 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
-        //Debug.Log("Chasing player...");
         agent.SetDestination(player.position);
         transform.LookAt(player);
         walkPointSet = true;
@@ -227,7 +186,6 @@ abstract public class AbstractEnemyController : MonoBehaviour
         Gizmos.color = Color.yellow;
         float rayRange = sightRange;
         float halfFOV = fov / 2.0f;
-        // float coneDirection = 0;
 
         Quaternion leftRayRotation = Quaternion.AngleAxis(-halfFOV, Vector3.up);
         Quaternion rightRayRotation = Quaternion.AngleAxis(halfFOV, Vector3.up);
