@@ -1336,7 +1336,7 @@ MonoBehaviour:
     m_Bits: 512
   fov: 150
   walkPointRange: 10
-  timeBetweenAttacks: 5
+  timeBetweenAttacks: 2.5
   sightRange: 15
   attackRange: 2
   health: 60

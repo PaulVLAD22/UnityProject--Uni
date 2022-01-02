@@ -25253,6 +25253,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6798164456506875675, guid: afe253bb39e8c05448df57504b511367,
+        type: 3}
+      propertyPath: shouldNotFollow
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6798164456506875675, guid: afe253bb39e8c05448df57504b511367,
+        type: 3}
+      propertyPath: timeBetweenAttacks
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6798164457771744487, guid: afe253bb39e8c05448df57504b511367,
         type: 3}
       propertyPath: m_Name
@@ -35733,6 +35743,11 @@ PrefabInstance:
     - target: {fileID: 490335350711660523, guid: 0a7f51b5f4ba6294a889f661114da0d3,
         type: 3}
       propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 490335350711660523, guid: 0a7f51b5f4ba6294a889f661114da0d3,
+        type: 3}
+      propertyPath: m_NavMeshLayer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
