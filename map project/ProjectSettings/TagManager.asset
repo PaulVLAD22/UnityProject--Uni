@@ -10,6 +10,9 @@ TagManager:
   - Enemy
   - PatrolPoint
   - PowerupPoint
+  - Assault
+  - HandGun
+  - Shotgun
   layers:
   - Default
   - TransparentFX
@@ -23,7 +26,7 @@ TagManager:
   - PlayerLayer
   - LevelLayer
   - Furniture
-  - 
+  - GunLayer
   - 
   - 
   - 

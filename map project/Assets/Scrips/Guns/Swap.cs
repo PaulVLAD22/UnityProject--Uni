@@ -5,15 +5,21 @@ using UnityEngine;
 public class Swap : MonoBehaviour
 {
     [SerializeField] GameObject gun;
-    [SerializeField] GameObject Camera;
+    Camera camera;
     GameObject gunToDestroy;
+    
+    private void Awake(){
+        camera = Camera.main;
+    }
     public void SwapGuns()
-    {
-        Destroy(Camera.transform.GetChild(0).gameObject);
-        GameObject uiObj = Instantiate<GameObject>(gun,new Vector3 (0, 0, 10), Quaternion.identity);
-        uiObj.transform.SetParent(Camera.transform);
-        uiObj.transform.localPosition = gun.transform.localPosition;
-        uiObj.transform.localRotation = gun.transform.localRotation;
+    {   
+        if(!gun.gameObject.CompareTag(camera.transform.GetChild(1).gameObject.tag)) {
+            Destroy(camera.transform.GetChild(1).gameObject);
+            GameObject uiObj = Instantiate<GameObject>(gun,new Vector3 (0, 0, 10), Quaternion.identity);
+            uiObj.transform.SetParent(camera.transform);
+            uiObj.transform.localPosition = gun.transform.localPosition;
+            uiObj.transform.localRotation = gun.transform.localRotation;
+        }
         
     }
 }
