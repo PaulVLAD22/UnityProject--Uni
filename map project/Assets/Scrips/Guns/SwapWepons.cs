@@ -22,7 +22,7 @@ public class SwapWepons : MonoBehaviour
         }
         if (collision.gameObject.tag == "HandGun")
         {
-            playerInventory.heavyBullets += 60;
+            playerInventory.lightBullets += 60;
             obj = collision.gameObject;
             obj.GetComponent<Swap>().SwapGuns();
         }

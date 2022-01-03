@@ -20,6 +20,6 @@ public class Swap : MonoBehaviour
             uiObj.transform.localPosition = gun.transform.localPosition;
             uiObj.transform.localRotation = gun.transform.localRotation;
         }
-        
+        Destroy(gameObject);
     }
 }
