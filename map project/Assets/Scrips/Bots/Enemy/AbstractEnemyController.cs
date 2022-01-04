@@ -217,6 +217,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
     {
         transform.LookAt(player);
         StopMotion();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().TakeDamage(50);
 
         if (!alreadyAttacked)
         {

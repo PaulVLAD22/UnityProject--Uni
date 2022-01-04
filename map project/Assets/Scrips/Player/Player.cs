@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     {
         this.Health.AddValue(new StatModifier
         {
-            Value = CalculateReducedDamage(damage),
+            Value = CalculateReducedDamage(damage) * -1,
             Type = StatModType.Flat
         });
         CheckHealth();
