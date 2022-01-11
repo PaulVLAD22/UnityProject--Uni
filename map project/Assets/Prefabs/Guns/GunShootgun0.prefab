@@ -6078,6 +6078,8 @@ MonoBehaviour:
   reloadTime: 3
   allowButtonHold: 0
   isShotgun: 1
+  defaultGun: {fileID: 3556446939738595229, guid: 8a0ee5f661dd55a4e8a0487c818c6934,
+    type: 3}
   aimPositon: {x: 0.653, y: -2.295, z: 0.302}
   adsSpeed: 8
   adsFOV: 30

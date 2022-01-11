@@ -33361,7 +33361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd39d5e2fb82fa14f836420542a1350e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lightBullets: 100
+  lightBullets: 99999
   heavyBullets: 60
   shotgunBullets: 30
 --- !u!4 &1059672894

@@ -9,6 +9,7 @@ public class PlayerMovementV2 : MonoBehaviour
     public Player player;
     public CharacterController controller;
 
+
     // base movement
     public Vector3 moveDir;
     private float speed;
@@ -46,6 +47,7 @@ public class PlayerMovementV2 : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         moveDir = transform.right * x + transform.forward * z;
+        
 
         if (Input.GetKey("left shift"))
         {
@@ -59,7 +61,7 @@ public class PlayerMovementV2 : MonoBehaviour
         //Debug.Log($"Player speed is {speed}");
 
         controller.Move(moveDir * speed * Time.deltaTime);
-
+        
 
     }
 

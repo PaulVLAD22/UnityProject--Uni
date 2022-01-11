@@ -11,7 +11,7 @@ public class Gun_Mecanics : MonoBehaviour
     [SerializeField] bool allowButtonHold, isShotgun;
     int bulletsLeft, bulletsInInvetory;
     bool shooting, readyToShoot, reloading;
-
+    [SerializeField] GameObject defaultGun;
 
     //aim down sight
     private Vector3 originalPosition;
@@ -63,6 +63,16 @@ public class Gun_Mecanics : MonoBehaviour
         if (reloading == true)
         {
         transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition + new Vector3(0,-0.4f,0), Time.deltaTime*8);
+        }
+        if(bulletsLeft == 0 && !reloading){
+            Reload();
+        }
+        if(bulletsLeft == 0 && bulletsInInvetory == 0){
+            Destroy(fpsCam.transform.GetChild(1).gameObject);
+            GameObject uiObj = Instantiate<GameObject>(defaultGun,new Vector3 (0, 0, 10), Quaternion.identity);
+            uiObj.transform.SetParent(fpsCam.transform);
+            uiObj.transform.localPosition = defaultGun.transform.localPosition;
+            uiObj.transform.localRotation = defaultGun.transform.localRotation;
         }
     }
 
