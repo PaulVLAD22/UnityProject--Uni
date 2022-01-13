@@ -208,8 +208,10 @@ abstract public class AbstractEnemyController : MonoBehaviour
     {
         this.health -= damage;
 
-        if (health <= 0) {
+        if (health <= 0 && !isDead) {
+            var Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             DestroyEnemy();
+            Player.IncrementKillCount();
         }
     }
 
@@ -217,7 +219,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
     {
         transform.LookAt(player);
         StopMotion();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().TakeDamage(50);
+        //GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().TakeDamage(50);
 
         if (!alreadyAttacked)
         {

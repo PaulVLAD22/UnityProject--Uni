@@ -57,8 +57,16 @@ public class Gun_Mecanics : MonoBehaviour
     }
     private void Update()
     {   checkedBulletsTypeNumber();
-        MyInput();
-        text.GetComponent<TextMeshProUGUI>().SetText(bulletsLeft + " / " + bulletsInInvetory);
+        MyInput(); // ∞
+        if(bulletsInInvetory < 1000)
+        {
+            text.GetComponent<TextMeshProUGUI>().SetText(bulletsLeft + " / " + bulletsInInvetory);
+        }
+        else
+        {
+            text.GetComponent<TextMeshProUGUI>().SetText(bulletsLeft + " / ∞");
+        }
+
         ADS();
         if (reloading == true)
         {

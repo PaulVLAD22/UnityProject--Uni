@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class Player : MonoBehaviour
     public PlayerStat JumpHeight = new PlayerStat(2f, 10f);
     public PlayerStat MaxHealth = new PlayerStat(100f, 1000f);
     public PlayerStat DamageReduction = new PlayerStat(0f, 99f);
+    public int KillCount = 0;
+
+    private HighscoreManager highscoreManager = new HighscoreManager();
 
     public void TakeDamage(float damage)
     {
@@ -21,6 +26,7 @@ public class Player : MonoBehaviour
         });
         CheckHealth();
     }
+
 
     public void TakeCustomDamage(StatModifier statMod)
     {
@@ -49,5 +55,38 @@ public class Player : MonoBehaviour
     private void EndGame()
     {
         Debug.Log("Game Ended");
+        highscoreManager.AddScore(KillCount);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(0);
+    }
+
+    GameObject Canvas;
+    GameObject NumberOfKills;
+    public ProgressBar Pb;
+
+    private void Start()
+    {
+        Canvas = GameObject.Find("Canvas");
+        NumberOfKills = Canvas.transform.GetChild(2).gameObject;
+        highscoreManager = new HighscoreManager();
+        highscoreManager.LoadScores();
+    }
+
+    private void Update()
+    {
+        Pb.BarValue = CalculateHealth();
+        Pb.barValuev2 = Health.CustomValue + " / " + MaxHealth.Value;
+    }
+
+    public void IncrementKillCount()
+    {
+        KillCount += 1;
+        NumberOfKills.GetComponent<TextMeshProUGUI>().SetText(": "+ KillCount);
+        Debug.Log($"Current kill count:{KillCount}");
+    }
+
+    private float CalculateHealth()
+    {
+        return Health.CustomValue / MaxHealth.Value * 100;
     }
 }

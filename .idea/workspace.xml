@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="fb1b0ae6-ba0e-4cb3-9640-45c4dd3a0943" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scenes/Game_Map_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Assets/Scenes/Game_Map_Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/map project/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="21s3yARrTZGTQOjU6aA2zkyXB2c" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fb1b0ae6-ba0e-4cb3-9640-45c4dd3a0943" name="Changes" comment="" />
+      <created>1638716219988</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1638716219988</updated>
+      <workItem from="1638716221357" duration="1280000" />
+      <workItem from="1638880685905" duration="48000" />
+      <workItem from="1640617367839" duration="485000" />
+      <workItem from="1640617867775" duration="1227000" />
+      <workItem from="1640788987776" duration="967000" />
+      <workItem from="1641508177771" duration="23000" />
+      <workItem from="1641857307674" duration="780000" />
+      <workItem from="1641919901752" duration="1692000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

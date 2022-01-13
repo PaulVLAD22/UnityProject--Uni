@@ -1,0 +1,17 @@
+Index: map project/Assets/Scenes/Game_Map_Scene.unity
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/map project/Assets/Scenes/Game_Map_Scene.unity b/map project/Assets/Scenes/Game_Map_Scene.unity
+--- a/map project/Assets/Scenes/Game_Map_Scene.unity	(revision ec9e1962919fb97b650aef8d9c4dfd31579b60f5)
++++ b/map project/Assets/Scenes/Game_Map_Scene.unity	(date 1640789515319)
+@@ -48456,7 +48456,7 @@
+   - gameObject: {fileID: 1165555707700248000, guid: aa6d1c57f2d65ed45a7b7ada274757e5,
+       type: 3}
+     spawnRate: 3
+-  SpawnDelay: 60
++  SpawnDelay: 1
+ --- !u!4 &1677817439 stripped
+ Transform:
+   m_CorrespondingSourceObject: {fileID: 7400456941558662964, guid: f86dc25794fda774aa908152821e0248,
