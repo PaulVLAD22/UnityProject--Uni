@@ -57,8 +57,8 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Game Ended");
         highscoreManager.AddScore(KillCount);
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        //SceneManager.LoadScene(0);
+        PlayerPrefs.SetInt("score", KillCount);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);       
     }
 
     GameObject Canvas;

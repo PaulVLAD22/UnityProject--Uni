@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fb1b0ae6-ba0e-4cb3-9640-45c4dd3a0943" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/map project/Assets/Scenes/Game_Map_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Assets/Scenes/Game_Map_Scene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map project/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/map project/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/map project/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
+    <list default="true" id="fb1b0ae6-ba0e-4cb3-9640-45c4dd3a0943" name="Changes" comment="#">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_7_2022_00_29_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_1_7_2022_00_29__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scenes/EndMenu_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Assets/Scenes/EndMenu_Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scenes/Game_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Assets/Scenes/Game_Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scenes/Menu_Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Assets/Scenes/Menu_Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scrips/MainMenu.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scrips/MainMenu.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scrips/Menu/MainMenuScript.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scrips/Menu/MainMenuScript.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/Scrips/Player/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Assets/Scrips/Player/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/map project/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/map project/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/map project/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +59,17 @@
       <workItem from="1641508177771" duration="23000" />
       <workItem from="1641857307674" duration="780000" />
       <workItem from="1641919901752" duration="1692000" />
+      <workItem from="1642098987005" duration="1302000" />
+      <workItem from="1642184005660" duration="1898000" />
     </task>
+    <task id="LOCAL-00001" summary="#">
+      <created>1642099105677</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1642099105677</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -65,5 +85,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#" />
+    <option name="LAST_COMMIT_MESSAGE" value="#" />
   </component>
 </project>
