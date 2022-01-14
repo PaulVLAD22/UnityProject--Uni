@@ -136,9 +136,6 @@ abstract public class AbstractEnemyController : MonoBehaviour
                 {
                     Debug.Log("Walkpoint reached");
                     walkPointSet = false;
-
-                    
-
                 }
             }
         }
