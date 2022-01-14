@@ -13,7 +13,7 @@ TagManager:
   - Assault
   - HandGun
   - Shotgun
-  - EnemyBullet
+  - Leaderboard
   layers:
   - Default
   - TransparentFX

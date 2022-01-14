@@ -5,9 +5,8 @@ using System.Collections.Generic;
 public class PlayerStat
 {
 
-    public float BaseValue;
-
-    public float MaxValue;
+    public float BaseValue { get; set; }
+    public float MaxValue { get; set; }
 
     public float Value
     {
@@ -51,6 +50,7 @@ public class PlayerStat
     {
         CustomValue = baseValue;
         BaseValue = baseValue;
+        MaxValue = maxValue;
         statModifiers = new List<StatModifier>();
     }
 
