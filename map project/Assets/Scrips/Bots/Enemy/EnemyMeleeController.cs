@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class EnemyMeleeController : AbstractEnemyController
 {
+    public AudioSource attackSound;
+    public float timeOfAnimation;
+
+    protected void CheckCollisionAndDoDamage()
+    {
+        attackSound.Play(0);
+        if (PlayerInAttackRange()) {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().TakeDamage(damage);
+        }
+    }
+
     protected override void AttackAction()
     {
-        GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().TakeDamage(damage);
-        // ii adauga Stefan delay ca e prea asa
+        Invoke(nameof(CheckCollisionAndDoDamage), timeOfAnimation);
     }
 }

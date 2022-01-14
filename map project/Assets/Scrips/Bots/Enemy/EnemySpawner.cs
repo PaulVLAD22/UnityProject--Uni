@@ -59,7 +59,8 @@ public class EnemySpawner : MonoBehaviour
         return point;
     }
 
-    bool CanBeSpawned(Vector3 point) {
+    bool CanBeSpawned(Vector3 point) 
+    {
         Vector3 pointOnCamera = camera.WorldToScreenPoint(point);
  
         // Check if point is on camera
