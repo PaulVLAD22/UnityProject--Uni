@@ -42,10 +42,12 @@ abstract public class AbstractEnemyController : MonoBehaviour
     [Header ("Debug")]
     public bool shouldNotPatrol;
     public bool shouldNotFollow;
-
+    private AudioSource audioSource;
+    float timer = 5f;
     protected void Awake()
     {
         player = GameObject.Find("Player").transform;
+        audioSource = GetComponent<AudioSource>();
 
         if (player == null) {
             Debug.Log("There is no player for the enemy to track!");
@@ -90,6 +92,12 @@ abstract public class AbstractEnemyController : MonoBehaviour
             return;
         }
 
+        if(!audioSource.isPlaying&& timer <= 0)
+        {
+            audioSource.Play();
+            timer = 5f;
+        }
+        timer -= Time.deltaTime;
         // Check for sight and attack range
         playerInSightRange = PlayerInSightRange();
         playerInAttackRange = PlayerInAttackRange();
@@ -128,6 +136,9 @@ abstract public class AbstractEnemyController : MonoBehaviour
                 {
                     Debug.Log("Walkpoint reached");
                     walkPointSet = false;
+
+                    
+
                 }
             }
         }
