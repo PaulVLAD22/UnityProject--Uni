@@ -15,10 +15,11 @@ public class Player : MonoBehaviour
     public PlayerStat DamageReduction = new PlayerStat(0f, 99f);
     public int KillCount = 0;
 
-    private HighscoreManager highscoreManager = new HighscoreManager();
+    private HighscoreManager highscoreManager;
 
     public void TakeDamage(float damage)
     {
+        Debug.Log($"Taking damage {damage}; Damage reduction = {DamageReduction.Value} {DamageReduction.BaseValue} ");
         this.Health.AddValue(new StatModifier
         {
             Value = CalculateReducedDamage(damage) * -1,

@@ -13,6 +13,7 @@ TagManager:
   - Assault
   - HandGun
   - Shotgun
+  - Leaderboard
   layers:
   - Default
   - TransparentFX
