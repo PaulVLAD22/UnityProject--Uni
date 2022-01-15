@@ -8,6 +8,7 @@ public class EndMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         var playerScore  =  PlayerPrefs.GetInt("score");
         GetComponent<TextMeshProUGUI>().SetText("SCORE: "+ playerScore);
