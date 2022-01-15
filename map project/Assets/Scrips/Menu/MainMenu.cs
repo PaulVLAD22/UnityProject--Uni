@@ -38,7 +38,6 @@ public class MainMenu : MonoBehaviour
 
     public void LoadLeaderboard()
     {
-        
         leaderboard = GameObject.FindGameObjectsWithTag("Leaderboard")[0];
         var scores = String.Join("\n", highscoreManager.LoadScores());
         leaderboard.GetComponent<TextMeshProUGUI>().SetText(scores);

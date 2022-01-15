@@ -51,7 +51,7 @@ public class HighscoreManager : MonoBehaviour
         leaderboard.list.Add(score);
         leaderboard.list.Sort();
         leaderboard.list.Reverse();
-        leaderboard.list = leaderboard.list.Take(10).ToList();
+        leaderboard.list = leaderboard.list.Take(5).ToList();
         XmlSerializer serializer = new XmlSerializer(typeof(Leaderboard));
         FileStream stream = new FileStream(Application.persistentDataPath + "/HighScores/highscores.xml", FileMode.Create);
         serializer.Serialize(stream, leaderboard);
