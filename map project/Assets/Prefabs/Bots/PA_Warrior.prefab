@@ -1052,6 +1052,7 @@ MonoBehaviour:
   attackSound: {fileID: 5202156495258725764}
   timeOfAnimation: 0.3
   muzzleFlash: {fileID: 5569902543634483739}
+  bullet: {fileID: 7803640559635181419, guid: dbb2e052bc438c847a8daea459c5b573, type: 3}
 --- !u!82 &2072759141287826739
 AudioSource:
   m_ObjectHideFlags: 0

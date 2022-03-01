@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ColissionHandler : MonoBehaviour
 {
-    int numberOfColides;
-    void OnCollisionEnter(Collision collision)
+    IEnumerator OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
         if(collision.gameObject.tag =="Player"){
             //damge code
+            GameObject.FindGameObjectWithTag("Player").GetComponent<Player>().TakeDamage(20);
             Debug.Log("Take Damage");
+            Destroy(this.gameObject);
         }
-        // if(numberOfColides==2)
-        //     Destroy(gameObject);
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
+        
     }
 }
