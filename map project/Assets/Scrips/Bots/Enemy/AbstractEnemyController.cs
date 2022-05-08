@@ -24,7 +24,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
 
     protected Transform player;
 
-    protected bool playerInSightRange, playerInAttackRange, playerHasBeenSeen;
+    protected AbstractEnemyState fsmState;
 
     [Header ("Layers")]
     public LayerMask groundLayer, playerLayer;
@@ -44,6 +44,12 @@ abstract public class AbstractEnemyController : MonoBehaviour
     public bool shouldNotFollow;
     private AudioSource audioSource;
     float timer = 5f;
+
+    protected AbstractEnemyController() 
+    {
+        this.fsmState = new PatrolAreaEnemyState(this);
+    }
+
     protected void Awake()
     {
         player = GameObject.Find("Player").transform;
@@ -57,64 +63,30 @@ abstract public class AbstractEnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    protected bool PlayerInAttackRange() 
-    {
-        return Physics.CheckSphere(transform.position, attackRange, playerLayer);
-    }
-
-    protected bool PlayerInSightRange()
-    {
-        return Physics.CheckSphere(transform.position, sightRange, playerLayer);
-    }
-
-    protected bool PlayerInFieldOfView()
-    {
-        bool visibility = false;
-        float angle;
-        RaycastHit hit;
-        Vector3 rayDirection = player.transform.position - transform.position;
-
-        if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity)) {
-            if (hit.transform.tag.Equals (player.tag)) {
-                angle = Vector3.Angle (transform.forward, rayDirection);
-                if (angle <= fov) {
-                    visibility = true;
-                }
-            }
-        }
-
-        return visibility;
-    }
-
     protected void FixedUpdate()
     {
         if (alreadyAttacked || isDead) {
             return;
         }
 
-        if(!audioSource.isPlaying&& timer <= 0)
+        if (!audioSource.isPlaying && timer <= 0)
         {
             audioSource.Play();
             timer = 5f;
         }
+        
         timer -= Time.deltaTime;
-        // Check for sight and attack range
-        playerInSightRange = PlayerInSightRange();
-        playerInAttackRange = PlayerInAttackRange();
-        playerHasBeenSeen = PlayerInFieldOfView();
 
-        if (playerInAttackRange) {
-            AttackPlayer();
-        } else {
-            if (playerHasBeenSeen && playerInSightRange) {
-                ChasePlayer();
-            } else {
-                Patrolling();
-            }
-        }
+        fsmState.DoAction();
+        fsmState.CheckStateChange();
     }
 
-    protected void Patrolling()
+    public void ChangeState(AbstractEnemyState state)
+    {
+        this.fsmState = state;
+    }
+
+    public void PatrolArea()
     {
         SetAnimationState(PATROLLING);
         if (shouldNotPatrol) {
@@ -154,7 +126,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
         walkPointSet=true;
     }
 
-    protected void ChasePlayer()
+    public void ChasePlayer()
     {
         SetAnimationState(CHASING);
         if (shouldNotFollow) {
@@ -223,7 +195,7 @@ abstract public class AbstractEnemyController : MonoBehaviour
         }
     }
 
-    protected void AttackPlayer() 
+    public void AttackPlayer() 
     {
         transform.LookAt(player);
         StopMotion();
@@ -239,6 +211,36 @@ abstract public class AbstractEnemyController : MonoBehaviour
         }
     }
 
+
+    public bool PlayerInAttackRange() 
+    {
+        return Physics.CheckSphere(transform.position, attackRange, playerLayer);
+    }
+
+    public bool PlayerInSightRange()
+    {
+        return Physics.CheckSphere(transform.position, sightRange, playerLayer);
+    }
+    
+    public bool PlayerInFieldOfView()
+    {
+        bool visibility = false;
+        float angle;
+        RaycastHit hit;
+        Vector3 rayDirection = player.transform.position - transform.position;
+
+        if (Physics.Raycast (transform.position, rayDirection, out hit, Mathf.Infinity)) {
+            if (hit.transform.tag.Equals (player.tag)) {
+                angle = Vector3.Angle (transform.forward, rayDirection);
+                if (angle <= fov) {
+                    visibility = true;
+                }
+            }
+        }
+
+        return visibility;
+    }
+    
     // Attack code here
-    protected abstract void AttackAction();
+    public abstract void AttackAction();
 }

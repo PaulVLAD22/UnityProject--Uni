@@ -15,7 +15,7 @@ public class EnemyMeleeController : AbstractEnemyController
         }
     }
 
-    protected override void AttackAction()
+    public override void AttackAction()
     {
         Invoke(nameof(CheckCollisionAndDoDamage), timeOfAnimation);
     }
