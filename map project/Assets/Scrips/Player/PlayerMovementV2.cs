@@ -24,8 +24,8 @@ public class PlayerMovementV2 : MonoBehaviour
 
     Vector3 velocity;
 
-    private const float NORMAL_FOV = 60f;
-    private const float HOOKSHOT_FOV = 100f;
+    private const float NORMAL_FOV = 20f;
+    private const float HOOKSHOT_FOV = 300f;
 
     [SerializeField] private Transform debugHitPointTransform;
     [SerializeField] private Transform hookshotTransform;
@@ -166,7 +166,7 @@ public class PlayerMovementV2 : MonoBehaviour
 
         float hookshotThrowSpeed = 500f;
         hookshotSize += hookshotThrowSpeed * Time.deltaTime;
-        hookshotTransform.localScale = new Vector3(1, 1, hookshotSize);
+        hookshotTransform.localScale = new Vector3(0.1f, 0.1f, hookshotSize);
 
         if (hookshotSize >= Vector3.Distance(transform.position, hookshotPosition))
         {
